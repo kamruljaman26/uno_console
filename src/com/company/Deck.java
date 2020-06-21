@@ -1,7 +1,5 @@
 package com.company;
 
-import com.company.values.GameConstants;
-
 import java.util.*;
 
 /**
@@ -12,7 +10,7 @@ public class Deck implements GameConstants {
 
     // Card Deck / UNO DrawPile
     private Stack<UNOCard> Deck;
-
+    private int index= 0;
     //Constructor
     public Deck() {
         Deck = new Stack<>(); //init Deck
@@ -21,7 +19,9 @@ public class Deck implements GameConstants {
 
     // Draw top Card from Draw Pile
     public UNOCard getTopCardFromDrawPile(){
-        return Deck.pop();
+        //System.out.println("getTopCardFromDrawPile"+index);
+        index++;
+        return isEmpty() ? null : Deck.pop();
     }
 
     // Is The Duck is Empty ?
@@ -64,7 +64,7 @@ public class Deck implements GameConstants {
             //Create 24 ActionCards --> everything twice
             for (String type : ACTION_CARDS) {
                 for (int i = 0; i < 2; i++) {
-                    UNOCard card = new UNOCard(color, type, null); // Create Card
+                    UNOCard card = new UNOCard(color, type, "None"); // Create Card
                     cards.add(card);
                 }
             }
@@ -72,7 +72,7 @@ public class Deck implements GameConstants {
         //Create 8 WILD cards
         for (String type : WILD_CARDS) {
             for (int i = 0; i < 4; i++) {
-                UNOCard card = new UNOCard(null, type, null); // Create Card
+                UNOCard card = new UNOCard("None", type, "None"); // Create Card
                 cards.add(card); // Add to Deck
             }
         }

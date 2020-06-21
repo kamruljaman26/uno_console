@@ -1,15 +1,9 @@
 package com.company;
-
-import java.util.List;
-
 public class Main {
-
     public static void main(String[] args) {
-
-        Deck deck = new Deck();
-        while (!deck.isEmpty()){
-            System.out.println(deck.getTopCardFromDrawPile());
+        GameTable gameTable = new GameTable(4);
+        for(int i=0;i<1;i++){
+            gameTable.StartGame();
         }
-
     }
 }

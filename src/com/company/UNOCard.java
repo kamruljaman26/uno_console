@@ -1,15 +1,13 @@
 package com.company;
 
-import com.company.values.GameConstants;
-
 import java.util.Objects;
 
 public class UNOCard implements GameConstants {
 
     //Card Properties : Variables
-    private String color;
-    private String cardType;
-    private String value;
+    private String color = "";
+    private String cardType = "";
+    private String value = "";
 
     //Constructor: Set Card Values at the begnaning
     public UNOCard(String color, String cardType, String value) {
@@ -37,20 +35,23 @@ public class UNOCard implements GameConstants {
      * Match UNOCard to Another UNOCard
      */
     public boolean isMatch(UNOCard unoCard){
-
-        //Check Condition for Action Card
-        if(cardType.equals(SKIP) || cardType.equals(REVERSE) || cardType.equals(DRAW_2)){
-            return Objects.equals(color,unoCard.color) || Objects.equals(cardType,unoCard.cardType);
-        }
-        //Else If : Check Condition for Action Card
-        else if(cardType.equals(NUMBER)){
-            return Objects.equals(color,unoCard.color) || Objects.equals(value,unoCard.value);
-        }
-        /*
-         * This "else" statement for Wild Card: We don't need to match WILD Cards, This
-         * card can be any time. So no Match needed! : By default, we will return false
-         */
-        else {
+        try {
+            //Check Condition for Action Card
+            if(cardType.equals(SKIP) || cardType.equals(REVERSE) || cardType.equals(DRAW_2)){
+                return Objects.equals(color,unoCard.color) || Objects.equals(cardType,unoCard.cardType);
+            }
+            //else If : Check Condition for Number Type Card
+            else if(cardType.equals(NUMBER)){
+                return Objects.equals(color,unoCard.color) || Objects.equals(value,unoCard.value);
+            }
+            /*
+             * This "else" statement for Wild Card: We don't need to match WILD Cards, This
+             * card can be any time. So no Match needed! : By default, we will return false
+             */
+            else {
+                return false;
+            }
+        }catch (Exception e){
             return false;
         }
     }
