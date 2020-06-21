@@ -1,5 +1,8 @@
 package com.company;
 
+/**
+ * To Store some helper Method & Constants Values for Game
+ */
 public interface GameConstants {
 
     //ANIS COLOR codes for Console

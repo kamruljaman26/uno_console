@@ -9,8 +9,6 @@ public class Hand implements GameConstants {
     private List<UNOCard> playerCards;
     private int point = 0;
     private String playerName;
-    private boolean isMyTurn = false;
-    private boolean saidUNO = false;
 
 
     // Initialize Empty Array List for store player card

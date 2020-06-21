@@ -19,6 +19,7 @@ public class GameTable extends Thread implements GameConstants {
         }
     }
 
+
     //Public Start Game Method
     public void StartGame() {
 
@@ -26,12 +27,10 @@ public class GameTable extends Thread implements GameConstants {
         startPlay();
     }
 
-    /**
-     * After Deal Card to Player Lets start play by Gaming Roles
-     */
+
+     // After Deal Card to Player Lets start play by Gaming Roles
     private void startPlay() {
-        boolean scoreCheck = false;
-        while (!scoreCheck) { // Score Checker Loop
+        while (true) { // Score Checker Loop
             // Deal Cards to player :: Start Game
             System.out.println("Game Start ... ");
             System.out.println("Dealing 7 Cards to each player ... \n");
@@ -135,12 +134,10 @@ public class GameTable extends Thread implements GameConstants {
                     //if Player Cards not Empty lets play with Game rules
                     if (!players[index].isEmpty()) {
 
-                        //Variable for handle first Trun
-
                         //Use Thread Sleep To Slow Down the Process
                         try {
                             //1000 = 1 Second :: By increasing or decreasing we can slowdown Code Execution Time
-                            sleep(0);
+                            sleep(3000);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -248,10 +245,10 @@ public class GameTable extends Thread implements GameConstants {
 
                             //Finish Game or Say UNO
                             if (index < 4 && index > -1) {
-                                if (players[index].isEmpty()) {
+                                if (players[index].isEmpty()) { // If Empty break the loop
                                     break;
                                 } else if (players[index].remainsCard() == 1) {
-                                    sayUNO(players[index].getPlayerName());
+                                    sayUNO(players[index].getPlayerName()); // Computer did't say to forget UNO !
                                 }
                             }
 
@@ -332,13 +329,16 @@ public class GameTable extends Thread implements GameConstants {
                         }
                     } else { // If Any Player Cards is finished!
                         int totalPoint = 0;
+
+                        //Calculate Point
                         for (Hand player : players) {
                             if (!player.getPlayerName().equals(players[index].getPlayerName())) {
                                 totalPoint += player.getTotalPoint();
                             }
                         }
-                        playerScore[index] =playerScore[index] + totalPoint;
-                        runningGame = false;
+                        playerScore[index] =playerScore[index] + totalPoint; // Save Point
+                        runningGame = false; // End Loop
+                        //Print Board Winner
                         System.out.println("\nBoard Winner " + players[index].getPlayerName() + ", Earn "+totalPoint+"\n");
                         break;
                     }
@@ -351,13 +351,13 @@ public class GameTable extends Thread implements GameConstants {
             //Check Score
             for (int i=0;i<3;i++){
                 int score = playerScore[i];
-                if(score>50000){ // Set winner score here 500-50000 :: Anything
+                if(score>500){ // Set winner score here 500-50000 :: Anything
                     System.out.println("!!! WIN !!! " + players[i].getPlayerName() +" !!! WIN !!! "+ "\n Game Over ... .. .");
                     System.out.println("Total Point Earn ::: " + score);
-                    scoreCheck = true;
-                    //return;
+                    stop();
+                    return;
                 }
-            }
+            } //End Table Cycle
         } // End Score Checker
     }
 
@@ -388,6 +388,7 @@ public class GameTable extends Thread implements GameConstants {
     }
 
 
+    //Print UNO!
     private void sayUNO(String name){
         System.out.println();
         System.out.println("*****************************************");
@@ -395,7 +396,5 @@ public class GameTable extends Thread implements GameConstants {
         System.out.println("*****************************************");
         System.out.println("");
     }
-
-
 
 }

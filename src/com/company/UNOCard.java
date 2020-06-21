@@ -45,8 +45,8 @@ public class UNOCard implements GameConstants {
                 return Objects.equals(color,unoCard.color) || Objects.equals(value,unoCard.value);
             }
             /*
-             * This "else" statement for Wild Card: We don't need to match WILD Cards, This
-             * card can be any time. So no Match needed! : By default, we will return false
+             * This "else" statement for Wild Card: We don't need to match WILD_DRAW_4 Cards, This
+             * card can be if don't Match any Card. So no Match needed! : By default, we will return false
              */
             else {
                 return false;
